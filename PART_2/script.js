@@ -9,7 +9,7 @@ fs.writeFile("./PART_2/Create.txt", "Mero mailo commit hai", function (err) {
 fs.appendFile("Create.txt", "\nYo Kura chai append garam hai", function (err) {
   if (err) {
     console.log(err);
-  } else console.log("Vayo");
+  } else console.log("Done");
 });
 
 fs.rename("Create.txt", "Change.txt", (err) => {
