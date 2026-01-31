@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Show Data</title>
+  </head>
+  <body class="bg-zinc-900">
+    <div class="main w-full min-h-screen bg-zinc-900 p-10 text-zinc-100">
+      <a href="/" class="text-blue-400 hover:underline mb-10 inline-block">
+        ← Go back to Home
+      </a>
+
+      <div class="mt-6 bg-zinc-800 border border-zinc-700 rounded-lg p-6">
+        <h1 class="text-3xl tracking-tight text-white"><%= filename %></h1>
+
+        <p class="text-lg mt-4 font-light text-zinc-300 whitespace-pre-wrap">
+          <%= filedata %>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

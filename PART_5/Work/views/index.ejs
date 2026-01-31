@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div
+      class="main w-full min-h-screen bg-zinc-900 flex flex-col items-center py-10"
+    >
+      <div class="w-full max-w-md space-y-6">
+        <!-- Card -->
+        <div class="bg-zinc-800 p-6 rounded-xl shadow-lg">
+          <h1 class="text-white text-2xl font-semibold mb-4 text-center">
+            Create Task
+          </h1>
+
+          <form class="flex flex-col gap-4" action="/create" method="post">
+            <input
+              type="text"
+              placeholder="Title"
+              class="w-full px-4 py-2 rounded-md bg-zinc-900 text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              name="title"
+            />
+
+            <textarea
+              placeholder="Write your task details here"
+              rows="4"
+              class="w-full px-4 py-2 rounded-md bg-zinc-900 text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+              name="details"
+            ></textarea>
+
+            <button
+              type="submit"
+              class="bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md font-medium transition"
+            >
+              Create Task
+            </button>
+          </form>
+        </div>
+
+        <!-- Tasks List -->
+        <div class="tasks grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Task 1 -->
+          <% if (files.length > 0) { %> <% files.forEach(function (val) { %>
+          <div class="bg-zinc-800 border border-zinc-700 rounded-lg p-4">
+            <h2 class="text-white font-semibold text-lg"><%=val%></h2>
+
+            <div class="flex w-full justify-between item-center mt-3">
+              <a
+                href="/file/<%=val%>"
+                class="text-blue-500 inline-block hover:underline"
+              >
+                Read More →
+              </a>
+
+              <a class="text-zinc-400" href="/edit/<%=val%>">Edit</a>
+            </div>
+          </div>
+          <% }) %> <% } else { %>
+          <h3 class="text-zinc-400">No Task Yet</h3>
+          <% } %>
+
+          <!-- files name le data aaxa jun array ho  -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
