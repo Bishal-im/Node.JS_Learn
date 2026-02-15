@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Post</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+      * {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+
+  <body class="bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 min-h-screen text-white">
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-6xl mx-auto px-4 py-10">
+
+      <!-- CREATE POST CARD -->
+      <div class="bg-zinc-800/90 backdrop-blur-sm p-8 rounded-3xl shadow-2xl w-full max-w-md border border-zinc-700/50 mx-auto">
+
+        <div class="flex justify-between items-center mb-6">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl shadow-lg"
+            >
+              <%= user.name ? user.name.charAt(0).toUpperCase() : 'U' %>
+            </div>
+            <div>
+              <h2 class="text-xl font-bold">
+                Hello,
+                <span class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  <%= user.name %>
+                </span>
+              </h2>
+              <p class="text-zinc-400 text-sm">Welcome back!</p>
+            </div>
+          </div>
+
+          <a href="/logout"
+            class="text-sm bg-red-500/80 hover:bg-red-600 transition px-4 py-2 rounded-lg">
+            Logout
+          </a>
+        </div>
+
+        <form action="/post" method="post" class="space-y-5">
+          <div class="relative">
+            <textarea
+              name="content"
+              rows="4"
+              class="w-full resize-none bg-zinc-900/50 border-2 border-zinc-700 rounded-xl p-4 text-white placeholder-zinc-500 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200"
+              placeholder="What's on your mind? ✨"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-4 rounded-xl hover:from-blue-600 hover:to-purple-700 transform hover:scale-[1.02] transition-all duration-200 shadow-lg shadow-blue-500/25"
+          >
+            Post
+          </button>
+        </form>
+
+        <div class="mt-6 text-center">
+          <a
+            href="/profile"
+            class="text-zinc-400 hover:text-white transition text-sm"
+          >
+            ← Back to profile
+          </a>
+        </div>
+      </div>
+
+      <!-- POSTS SECTION -->
+      <div class="mt-16">
+        <h3 class="text-3xl font-bold mb-8 text-center">Your Posts</h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <% user.posts.reverse().forEach(function(post){ %>
+
+          <div
+            class="bg-zinc-800/80 backdrop-blur-md border border-zinc-700/50 rounded-2xl p-6 shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-300"
+          >
+
+            <h4 class="text-lg font-semibold text-blue-400 mb-3">
+              <%= user.username %>
+            </h4>
+
+            <p class="text-zinc-300 text-sm leading-relaxed break-words">
+              <%= post.content %>
+            </p>
+
+            <div class="flex justify-between items-center mt-6 text-sm font-medium">
+              <a href="/like/<%= post._id %>" class="text-blue-500 hover:text-blue-400 transition">
+                Like
+              </a>
+
+              <a href="" class="text-zinc-400 hover:text-white transition">
+                Edit
+              </a>
+            </div>
+
+          </div>
+
+          <% }) %>
+
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+</html>
